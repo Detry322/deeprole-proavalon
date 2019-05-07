@@ -10,6 +10,10 @@ DIR = os.path.abspath(os.path.dirname(__file__))
 
 app = FlaskAPI(__name__)
 
+app.config['DEFAULT_RENDERERS'] = [
+    'flask_api.renderers.JSONRenderer',
+]
+
 app.register_blueprint(debug_app, url_prefix='/debug')
 app.register_blueprint(deeprole_app, url_prefix='/deeprole')
 
