@@ -44,6 +44,7 @@ def create_session():
 
 
 @debug_app.route('/v0/session/act', methods=['POST'])
+@require_auth_decorator
 def bot_action():
     if not isinstance(request.data, dict):
         raise exceptions.ParseError('Data is not a json dict')
@@ -83,6 +84,7 @@ def bot_action():
 
 
 @debug_app.route('/v0/session/gameover', methods=['POST'])
+@require_auth_decorator
 def gameover():
     if not isinstance(request.data, dict):
         raise exceptions.ParseError('Data is not a json dict')
