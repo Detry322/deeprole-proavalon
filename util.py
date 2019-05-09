@@ -20,7 +20,7 @@ CAPABILITIES = [
     {
         "numPlayers": [5],
         "cards": [],
-        "roles": []
+        "roles": ['Resistance', 'Spy', 'Assassin', 'Merlin']
     }
 ]
 

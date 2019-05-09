@@ -26,7 +26,7 @@ def create_session():
         raise exceptions.ParseError('Data is not a json dict')
     missing_fields = get_missing_fields(
         request.data, ['numPlayers', 'roles', 'cards', 'teamLeader',
-                       'players', 'name', 'role', 'see']
+                       'players', 'name', 'role']
     )
     if len(missing_fields) != 0:
         raise exceptions.ParseError('Data is missing fields: {}'.format(missing_fields))
