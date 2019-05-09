@@ -1,5 +1,7 @@
 import os
 import functools
+import hashlib
+import json
 
 from flask import request
 from flask import current_app as app
@@ -39,3 +41,8 @@ def matches_capabilities(session_create):
 
 def get_missing_fields(obj, fields):
     return [field for field in fields if field not in obj.keys()]
+
+
+def quickhash(data):
+    h = hashlib.md5(json.dumps(data, sort_keys=True).encode('utf-8'))
+    return h.digest().hex()
