@@ -14,6 +14,7 @@ BINARY_PATH = os.path.join(DIR, 'bin', BINARY)
 MODEL_DIR = os.path.join(DIR, 'models')
 
 def run_deeprole(node):
+    print("Running deeprole!")
     command = [
         BINARY_PATH,
         '--play',
