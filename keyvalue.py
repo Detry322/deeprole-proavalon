@@ -1,24 +1,33 @@
 import redis
 import ujson as json
 import os
+import functools
+
+@functools.lru_cache(maxsize=256)
+def get_key(key):
+    return STORE._get(key)
+
 
 class RedisKV:
     def __init__(self):
         print("Using redis KV store")
         self.conn = redis.Redis.from_url(os.environ['REDIS_URL'])
-        pass
 
     def exists(self, key):
         assert isinstance(key, str), "keys must be str"
         return self.conn.exists(key) == 1
 
 
-    def get(self, key):
+    def _get(self, key):
         assert isinstance(key, str), "keys must be str"
         value = self.conn.get(key)
         if value is None:
             raise ValueError("couldn't find {} in store".format(key))
         return json.loads(value, precise_float=True)
+
+
+    def get(self, key):
+        return get_key(key)
 
 
     def set(self, key, value):
@@ -56,11 +65,17 @@ class LocalKV:
         assert isinstance(key, str), "keys must be str"
         return key in self.backing_store
 
-    def get(self, key):
+
+    def _get(self, key):
         assert isinstance(key, str), "keys must be str"
         if key not in self.backing_store:
             raise ValueError("couldn't find {} in store".format(key))
         return json.loads(self.backing_store[key], precise_float=True)
+
+
+    def get(self, key):
+        return get_key(key)
+
 
     def set(self, key, value):
         assert isinstance(key, str), "keys must be str"
