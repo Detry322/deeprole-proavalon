@@ -37,6 +37,7 @@ def create_session():
     player = players.index(name)
     role = request.data['role']
     spies = request.data.get('see', {}).get('spies', [])
+    spies = [ players.index(spy) for spy in spies ]
     team_leader = request.data['teamLeader']
     perspective = get_deeprole_perspective(player, role, spies)
 
