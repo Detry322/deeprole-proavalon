@@ -70,7 +70,7 @@ def bot_action():
         }
     elif game_data['phase'] == 'votingMission':
         return {
-            'buttonPressed': "yes" if random.random() < 0.5 else "no"
+            'buttonPressed': "yes" if random.random() < 0.5 or game_data['alliance'] == "Resistance" else "no"
         }
     elif game_data['phase'] == 'assassination':
         return {
