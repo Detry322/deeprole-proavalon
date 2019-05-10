@@ -60,12 +60,12 @@ def node_is_caught_up(node, game_info):
         if phase != 'pickingTeam':
             return False
 
-        return node['proposer'] == game_info['teamLeader']
+        return node['proposer'] == game_info['teamLeaderReversed']
     elif node['type'] == 'VOTE':
         if phase != 'votingTeam':
             return False
 
-        return node['proposer'] == game_info['teamLeader']
+        return node['proposer'] == game_info['teamLeaderReversed']
     elif node['type'] == 'MISSION':
         return phase == 'votingMission'
 

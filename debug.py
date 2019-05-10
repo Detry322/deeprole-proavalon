@@ -59,7 +59,7 @@ def bot_action():
     game_data = request.data['gameInfo']
 
     if game_data['phase'] == 'pickingTeam':
-        num_players = int(game_data['numPlayersOnMission'][game_data['missionNum']])
+        num_players = int(game_data['numPlayersOnMission'][game_data['missionNum'] - 1])
         return {
             'buttonPressed': "yes",
             'selectedPlayers': random.sample(creation_data['players'], num_players)
