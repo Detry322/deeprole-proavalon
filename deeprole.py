@@ -6,6 +6,9 @@ from keyvalue import STORE
 from lookup_tables import get_deeprole_perspective
 from game import replay_game_and_run_deeprole, get_move
 
+import requests
+import json
+
 deeprole_app = Blueprint('deeprole', __name__)
 
 @deeprole_app.route('/v0/info', methods=['GET'])
@@ -103,4 +106,10 @@ def gameover():
 
     STORE.delete(session_id)
 
-    return {}
+    url = 'https://jserrino.scripts.mit.edu/datasink/index.py?auth_key={}'.format(os.environ.get('SECRET_AUTH_KEY'))
+    r = requests.post(url, headers={ 'Content-Type': 'application/json' }, data=json.dumps({
+        'session_info': session_info,
+        'game_info': request.data['gameInfo']
+    }))
+
+    return r.json()
