@@ -168,7 +168,7 @@ def get_move(phase, session_info, node):
                 'buttonPressed': 'yes'
             }
         mission_strategy = node['mission_strat'][player][perspective]
-        fail_mission = bool(np.random.choice(len(vote_strategy), p=vote_strategy))
+        fail_mission = bool(np.random.choice(len(mission_strategy), p=mission_strategy))
         return {
             'buttonPressed': 'no' if fail_mission else 'yes'
         }
