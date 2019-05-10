@@ -3,7 +3,7 @@ import ujson as json
 import os
 import functools
 
-@functools.lru_cache(maxsize=256)
+@functools.lru_cache(maxsize=100)
 def get_key(key):
     return STORE._get(key)
 
