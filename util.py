@@ -33,9 +33,9 @@ def matches_capabilities(session_create):
             continue
         if not set(session_create["roles"]).issubset(set(capability["roles"])):
             continue
-        # Hacky code since deeprole needs both merlin and assassin
-        if 'Assassin' not in session_create['roles'] or 'Merlin' not in session_create['roles']:
-            continue
+        # # Hacky code since deeprole needs both merlin and assassin
+        # if 'Assassin' not in session_create['roles'] or 'Merlin' not in session_create['roles']:
+        #     continue
         if not set(session_create["cards"]).issubset(set(capability["cards"])):
             continue
         return True

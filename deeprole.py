@@ -6,6 +6,8 @@ from keyvalue import STORE
 from lookup_tables import get_deeprole_perspective
 from game import replay_game_and_run_deeprole, get_move
 
+from flask_api import exceptions
+
 import requests
 import json
 
